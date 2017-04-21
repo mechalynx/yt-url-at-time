@@ -6,7 +6,7 @@
 // @include     https://www.youtube.tld/watch*
 // @version     0.0.1
 // @copyright   2017, MechaLynx (https://github.com/MechaLynx)
-// @updateURL   https://openuserjs.org/meta/MechaLynx/userscript.meta.js
+// @updateURL   https://openuserjs.org/meta/MechaLynx/yt-url-at-time.meta.js
 // ==/UserScript==
 
 document.addEventListener('keydown', (z) => {

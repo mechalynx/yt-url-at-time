@@ -2,7 +2,7 @@
 // @name        yt-url-at-time
 // @namespace   mechalynx/yt-url-at-time
 // @grant       none
-// @description Adds a hotkey that sets your current url to the current time on the video being watched
+// @description On youtube, use alt+` to set the url to the current timestamp, for easy bookmarking
 // @include     https://www.youtube.tld/watch*
 // @version     0.0.1
 // @copyright   2017, MechaLynx (https://github.com/MechaLynx)

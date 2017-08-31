@@ -9,19 +9,25 @@
 // @updateURL   https://openuserjs.org/meta/MechaLynx/yt-url-at-time.meta.js
 // ==/UserScript==
 
-document.addEventListener('keydown', (z) => {
-    // if you want to change the hotkey
-    // you can use this: http://mechalynx.github.io/keypress/
-    // or another tester if you don't like this one
-    if (z.altKey && z.code === "Backquote" ){
-        window.location.assign(
-            (window.location.href.match(/(.*)(?:#t)/) ? window.location.href.match(/(.*)(?:#t)/)[1] : window.location.href) +
-              (() => {secs=yt.player.utils.VideoTagPool.instance.A[0].currentTime; 
-                      return "#t=" + [ ( h = ~~(secs/3600) ) && h + "h" || null,
-                                       ( m = ~~((secs%3600)/60) ) && m + "m" || null,
-                                       ( s = ~~(((secs%3600)%60)) ) && s + "s" ].join("");
-                     }
-              )()
-       );
-    }
+var re_timehash = /#t=([0-9]*(h|m|s))*/g;
+var video = {
+  element: document.getElementsByTagName('video') [0],
+  get timehash() {
+    var secs = this.element.currentTime;
+    return '#t=' + [(h = ~~(secs / 3600)) && h + 'h' || null,
+    (m = ~~(secs % 3600 / 60)) && m + 'm' || null,
+    (s = ~~(secs % 3600 % 60)) && s + 's'].join('');
+  },
+  get notimehash() {
+    return window.location.origin +
+    window.location.pathname +
+    window.location.search +
+    window.location.hash.replace(re_timehash, '');
+  }
+}
+document.addEventListener('keydown', z => {
+  // if you want to change the hotkey
+  // you can use this: http://mechalynx.github.io/keypress/
+  // or another tester if you don't like this one
+  z.altKey && 'Backquote' === z.code && history.replaceState(false, false, video.notimehash + video.timehash)
 });

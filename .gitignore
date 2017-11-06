@@ -1,3 +1,4 @@
+# ignore vim files
 [._]*.s[a-w][a-z]
 [._]s[a-w][a-z]
 *.un~
@@ -5,5 +6,9 @@ Session.vim
 .netrwhist
 *~
 
-# tag files
+# ignore tag files
 tags
+.tags
+
+# ignore todo files
+[tT][oO][dD][oO]*

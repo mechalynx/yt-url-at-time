@@ -4,15 +4,17 @@
 // @grant       none
 // @description On youtube, use alt+` to set the url to the current timestamp, for easy bookmarking
 // @include     https://www.youtube.tld/*
-// @version     0.1.2
+// @version     0.2.0
 // @copyright   2017, MechaLynx (https://github.com/MechaLynx)
 // @updateURL   https://openuserjs.org/meta/MechaLynx/yt-url-at-time.meta.js
 // @run-at document-idle
 // ==/UserScript==
 // jshint esversion: 6
 
+// Matches time hashes for the purpose of removing them
 var re_timehash = /#t=([0-9]*(h|m|s))*/g;
 
+// `video` element utility
 var video = {
   get element() {
     return document.querySelector('#movie_player video');
@@ -31,20 +33,41 @@ var video = {
   }
 };
 
+// Keep looking for the time indicator span, until it's found
+// The `load` event is insufficient
+var clipboard_helper;
 var wait_for_page = window.setInterval(function(){
   var current_time_element = document.querySelector('.ytp-time-current');
   if (current_time_element){
     window.clearInterval(wait_for_page);
 
+    // Add CSS for time indicator span
     let time_style = document.createElement('style');
     time_style.innerHTML = `
       .url-at-time-element-hover:hover{
         cursor: pointer;
       }
-	`;
+      .url-at-time-clipboard-helper{
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: none;
+        margin: none;
+        border: none;
+        width: 0;
+        height: 0;
+      }
+	  `;
     document.body.appendChild(time_style);
 
-    console.log(current_time_element);
+    // Add invisible textarea to allow copying the generated URL to clipboard
+    clipboard_helper = document.createElement('textarea');
+    clipboard_helper.classList.add('url-at-time-clipboard-helper');
+    document.body.appendChild(clipboard_helper);
+
+    // console.log(current_time_element);
+    // Toggle the class so that it doesn't look clickable
+    // during ads, which would be confusing
     current_time_element.onmouseover = function(){
       if (document.querySelector('.videoAdUi')){
         current_time_element.classList.remove('url-at-time-element-hover');
@@ -57,12 +80,18 @@ var wait_for_page = window.setInterval(function(){
   }
 }, 1000);
 
+// Add the timestamp to the URL
 var hashmodifier = function(){
   if ( location.href.match(/.*watch.*/) && document.querySelector('.videoAdUi') === null){
     history.replaceState(false, false, video.notimehash + video.timehash);
+    clipboard_helper.value = window.location.href;
+    clipboard_helper.select();
+    clipboard_helper.setSelectionRange(0, clipboard_helper.value.length);
+    document.execCommand('copy');
   }
 };
 
+// Listen for the hotkey
 document.addEventListener('keydown', z => {
   // if you want to change the hotkey
   // you can use this: http://mechalynx.github.io/keypress/

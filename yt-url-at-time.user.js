@@ -4,7 +4,7 @@
 // @grant       none
 // @description On youtube, use alt+` to set the url to the current timestamp, for easy bookmarking
 // @include     https://www.youtube.tld/*
-// @version     0.2.1
+// @version     0.2.2
 // @copyright   2017, MechaLynx (https://github.com/MechaLynx)
 // @updateURL   https://openuserjs.org/meta/MechaLynx/yt-url-at-time.meta.js
 // @run-at document-idle
@@ -95,7 +95,17 @@ var hashmodifier = function(precise=false){
   }
 };
 
-var copy_url_to_clipboard = function(){
+var copy_url_to_clipboard = function(attempt_to_restore=false){
+  // Current focus and selection cannot be restored
+  // since clicking on the timer causes the movie player to be focused
+  // clearing the selection and changing the active element before we arrive here
+  // However, attempting to restore them is meaningful if called through a hotkey
+  if (attempt_to_restore){
+    let selection = document.getSelection();
+    let current_selection = selection.getRangeAt(0);
+    let current_focus = document.activeElement;
+  }
+
   // Add invisible textarea to allow copying the generated URL to clipboard
   let clipboard_helper = document.createElement('textarea');
   clipboard_helper.classList.add('url-at-time-clipboard-helper');
@@ -107,6 +117,14 @@ var copy_url_to_clipboard = function(){
   document.execCommand('copy');
 
   document.body.removeChild(clipboard_helper);
+
+  if (attempt_to_restore){
+    current_focus.focus();
+
+    // https://gist.github.com/dantaex/543e721be845c18d2f92652c0ebe06aa
+    selection.empty();
+    selection.addRange(current_selection);
+  }
 };
 
 // Listen for the hotkey
@@ -114,5 +132,5 @@ document.addEventListener('keydown', z => {
   // if you want to change the hotkey
   // you can use this: http://mechalynx.github.io/keypress/
   // or another tester if you don't like this one
-    z.altKey && 'Backquote' === z.code && hashmodifier(false);
+    z.altKey && 'Backquote' === z.code && hashmodifier();
 });

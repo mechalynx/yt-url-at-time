@@ -4,9 +4,10 @@
 // @grant       none
 // @description On youtube, use alt+` to set the url to the current timestamp, for easy bookmarking
 // @include     https://www.youtube.tld/*
-// @version     0.2.2
+// @version     0.2.3
 // @copyright   2017, MechaLynx (https://github.com/MechaLynx)
 // @updateURL   https://openuserjs.org/meta/MechaLynx/yt-url-at-time.meta.js
+// @downloadURL https://openuserjs.org/src/scripts/MechaLynx/yt-url-at-time.user.js
 // @run-at document-idle
 // ==/UserScript==
 // jshint esversion: 6

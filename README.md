@@ -32,18 +32,18 @@ By using:
 
 These keys can be combined, so `Alt + Ctrl + click` will copy a precisely timestamped URL to your system clipboard.
 
-Alternatively, you can use the shortcut:
+Alternatively, you can use the keyboard shortcuts:
 
-  * ``Alt + ` ``
+  * ``Alt + ` ``: adds a regular timestamp to the URL
+  * ``Alt + ` ` ``: adds a precise timestamp to the URL (_note: that's two consecutive backticks, without releasing Alt!_)
+  * ``Alt + q + ` ``: adds a timestamp and copies the result to clipboard - works with both single and double backticks
 
-Which will do the same as a plain click but with just the keyboard.
-
-_Currently the hotkeys are not configurable, nor is it possible to get a precise timestamp or have it copied to the clipboard using this shortcut._
+_Currently the hotkeys are not configurable._
 
 In case of trouble
 ------------------
 
-Report bugs in this repository. Comments in other locations are likely to be missed.
+Report bugs in the issue tracker of this repository. Comments in other locations are likely to be missed.
 
 [vm]: https://violentmonkey.github.io/get-it/
 [gm_ff]: https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/

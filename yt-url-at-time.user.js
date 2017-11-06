@@ -4,7 +4,7 @@
 // @grant       none
 // @description On youtube, use alt+` to set the url to the current timestamp, for easy bookmarking
 // @include     https://www.youtube.tld/*
-// @version     0.2.3
+// @version     0.2.4
 // @copyright   2017, MechaLynx (https://github.com/MechaLynx)
 // @updateURL   https://openuserjs.org/meta/MechaLynx/yt-url-at-time.meta.js
 // @downloadURL https://openuserjs.org/src/scripts/MechaLynx/yt-url-at-time.user.js
@@ -128,10 +128,29 @@ var copy_url_to_clipboard = function(attempt_to_restore=false){
   }
 };
 
+var _alt=false;
+var _q=false;
 // Listen for the hotkey
 document.addEventListener('keydown', z => {
   // if you want to change the hotkey
   // you can use this: http://mechalynx.github.io/keypress/
   // or another tester if you don't like this one
-    z.altKey && 'Backquote' === z.code && hashmodifier();
+  if (z.code === 'KeyQ'){
+    _q=true;
+  }
+  if (z.altKey && z.code === 'Backquote'){
+    hashmodifier(_alt);
+    _alt=true;
+  }
+  if (_q){
+    copy_url_to_clipboard();
+  }
+});
+
+document.addEventListener('keyup', z => {
+  if(z.key == "Alt"){
+    _alt=false;
+  }else if(z.code === "KeyQ"){
+    _q=false;
+  }
 });

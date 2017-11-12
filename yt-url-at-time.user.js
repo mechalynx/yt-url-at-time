@@ -1,6 +1,7 @@
 // ==UserScript==
 // @name        yt-url-at-time
 // @namespace   mechalynx/yt-url-at-time
+// @license     MIT
 // @grant       none
 // @description On youtube, use alt+` to set the url to the current timestamp, for easy bookmarking
 // @include     https://www.youtube.tld/*

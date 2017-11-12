@@ -4,7 +4,7 @@
 // @grant       none
 // @description On youtube, use alt+` to set the url to the current timestamp, for easy bookmarking
 // @include     https://www.youtube.tld/*
-// @version     0.2.4
+// @version     0.2.5
 // @copyright   2017, MechaLynx (https://github.com/MechaLynx)
 // @updateURL   https://openuserjs.org/meta/MechaLynx/yt-url-at-time.meta.js
 // @downloadURL https://openuserjs.org/src/scripts/MechaLynx/yt-url-at-time.user.js
@@ -102,9 +102,10 @@ var copy_url_to_clipboard = function(attempt_to_restore=false){
   // clearing the selection and changing the active element before we arrive here
   // However, attempting to restore them is meaningful if called through a hotkey
   if (attempt_to_restore){
-    let selection = document.getSelection();
-    let current_selection = selection.getRangeAt(0);
-    let current_focus = document.activeElement;
+    var selection = document.getSelection();
+    var current_selection = selection.getRangeAt(0);
+    var current_focus = document.activeElement;
+    console.log(current_focus);
   }
 
   // Add invisible textarea to allow copying the generated URL to clipboard
@@ -142,15 +143,16 @@ document.addEventListener('keydown', z => {
     hashmodifier(_alt);
     _alt=true;
   }
-  if (_q){
-    copy_url_to_clipboard();
+  if (_q && _alt){
+    copy_url_to_clipboard(true);
   }
 });
 
 document.addEventListener('keyup', z => {
   if(z.key == "Alt"){
     _alt=false;
-  }else if(z.code === "KeyQ"){
+  }
+  if(z.code === "KeyQ"){
     _q=false;
   }
 });

@@ -38,7 +38,7 @@ Alternatively, you can use the keyboard shortcuts:
   * ``Alt + ` ` ``: adds a precise timestamp to the URL (_note: that's two consecutive backticks, without releasing Alt!_)
   * ``Alt + q + ` ``: adds a timestamp and copies the result to clipboard - works with both single and double backticks
 
-_Currently the hotkeys are not configurable._
+_Currently the hotkeys are not configurable._ Firefox captures the Alt key, so if you use precise timestamps through the hotkeys, it'll be stuck on precise timestamps even on the single backtick. Just tap Alt twice and it'll fix itself.
 
 In case of trouble
 ------------------

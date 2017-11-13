@@ -12,3 +12,6 @@ tags
 
 # ignore todo files
 [tT][oO][dD][oO]*
+
+# ignore bugs files
+[bB][uU][gG][sS]*

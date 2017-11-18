@@ -1,6 +1,8 @@
 yt-url-at-time
 ==============
 
+[![Install from OpenUserJS](https://img.shields.io/badge/Install%20from-OpenUserJS-2C3E50.svg)](https://openuserjs.org/scripts/MechaLynx/yt-url-at-time)
+
 Get timestamped URLs for YouTube videos easily.
 
 Installation

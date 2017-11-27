@@ -14,7 +14,7 @@ This is a userscript so you need a browser extension that can run them:
   * GreaseMonkey | [Firefox][gm_ff]
   * TamperMonkey | [Firefox][tm_ff] | [Chrome][tm_ch]
 
-Then you need to get the userscript itself. At the moment, it is hosted at [OpenUserJS][openuserjs].
+Then you need to get the userscript itself. At the moment, it is hosted at [OpenUserJS][openuserjs]. Alternatively, it can be found on [Greasy Fork][greasyfork].
 
 Usage
 -----
@@ -54,6 +54,7 @@ Report bugs in the issue tracker of this repository. Comments in other locations
 [vm_ff]: https://addons.mozilla.org/en-US/firefox/addon/violentmonkey/
 [vm_ch]: https://chrome.google.com/webstore/detail/violentmonkey/jinjaccalgkegednnccohejagnlnfdag
 [openuserjs]: https://openuserjs.org/scripts/MechaLynx/yt-url-at-time
+[greasyfork]: https://greasyfork.org/en/scripts/35760-yt-url-at-time
 
 [click]: img/click.png "Click on the current time"
 [url]: img/url.png "Timestamped URL"

@@ -10,6 +10,7 @@
 // @updateURL   https://openuserjs.org/meta/MechaLynx/yt-url-at-time.meta.js
 // @downloadURL https://openuserjs.org/src/scripts/MechaLynx/yt-url-at-time.user.js
 // @run-at document-idle
+// @author      MechaLynx
 // ==/UserScript==
 // jshint esversion: 6
 
